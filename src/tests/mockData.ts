@@ -27,3 +27,18 @@ export const mockData = {
         }
     ]
 };
+
+
+export const mockDistributionData = [
+    { type: "problem", percentage: "40.00%" },
+    { type: "question", percentage: "35.00%" },
+    { type: "task", percentage: "25.00%" }
+];
+
+
+export const mockPriorityData = [
+    { priority: "high", percentage: "35.20%" },
+    { priority: "medium", percentage: "42.40%" },
+    { priority: "low", percentage: "22.40%" }
+];
+

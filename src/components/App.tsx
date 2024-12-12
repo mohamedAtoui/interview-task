@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "react-query"
-import Data from "./Data"
+import { BackendTask1, BackendTask2, BackendTask3, ServiceDeskIssues } from './Data';
 
 const queryClient = new QueryClient()
 
@@ -8,7 +8,10 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <div className='p-4'>
                 <h1 className='mb-4 text-3xl'>Data Display</h1>
-                <Data />
+               <BackendTask1/>
+               <BackendTask2/>
+               <BackendTask3/>
+               <ServiceDeskIssues/>
             </div>
         </QueryClientProvider>
     )

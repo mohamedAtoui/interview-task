@@ -1,3 +1,4 @@
+export type Priority = 'urgent' | 'high' | 'normal' | 'low';
 export interface SampleData {
     results: {
         id: number;
@@ -6,7 +7,7 @@ export interface SampleData {
         due: string;
         status: string;
         type: string;
-        priority: string;
+        priority: Priority;
         assignee_id: string;
         subject: string;
         satisfaction_rating: {
@@ -25,3 +26,37 @@ export interface SampleData {
         ticket_form_id: string;
     }[];
 }
+
+export interface TypeDistribution {
+    type: string;
+    percentage: string;
+}
+
+export interface TypeDistributionPriority {
+    priority: string;
+    percentage: string;
+}
+
+export interface ClosureTimeResponse {
+    type: string;
+    averageClosureTime: string;
+    totalIssues: number;
+}
+
+export interface HighPriorityMetrics {
+    type: string;
+    averageClosureTime: string;
+    totalIssues: number;
+}
+
+export interface LongestIssueMetrics {
+    type: string;
+    satisfactionScore: number | null;
+    durationHours: string;
+}
+
+export interface ServiceDeskResponse {
+    highPriorityMetrics: HighPriorityMetrics;
+    longestIssueMetrics: LongestIssueMetrics;
+}
+

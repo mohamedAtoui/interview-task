@@ -27,7 +27,7 @@ export interface SampleData {
     }[];
 }
 
-export interface TypeDistribution {
+export interface TypeDistributionPQT {
     type: string;
     percentage: string;
 }

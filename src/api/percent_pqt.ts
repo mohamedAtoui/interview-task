@@ -7,6 +7,7 @@ const DATA_URL = 'https://sampleapi.squaredup.com/integrations/v1/service-desk?d
 export const GET = async (req: Request, res: Response) => {
     const { data } = await axios.get<SampleData>(DATA_URL);
 
+    // calculate priority distributions
     const typeDistribution = data.results.reduce((acc: Record<string, number>, item) => {
         if (['problem', 'question', 'task'].includes(item.type)) {
             acc[item.type] = (acc[item.type] || 0) + 1;
@@ -14,6 +15,7 @@ export const GET = async (req: Request, res: Response) => {
         return acc;
     }, {});
 
+    // convert to percentages
     const total = Object.values(typeDistribution).reduce((sum, count) => sum + count, 0);
     const percentages = Object.entries(typeDistribution).map(([type, count]) => ({
         type,

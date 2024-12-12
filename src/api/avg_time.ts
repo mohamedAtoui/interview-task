@@ -20,18 +20,22 @@ export const GET = async (req: Request, res: Response) => {
     const averageTime = closureTimes.reduce((sum, time) => sum + time, 0) / closureTimes.length;
     const averageHours = (averageTime / (1000 * 60 * 60)).toFixed(2);
 
-    const allIssuesWithDuration = data.results.map(issue => {
-        const created = new Date(issue.created);
-        const updated = new Date(issue.updated);
-        return {
-            duration: updated.getTime() - created.getTime(),
-            satisfactionScore: issue.satisfaction_rating?.score || null
-        };
-    });
 
-    const longestIssue = allIssuesWithDuration.reduce((longest, current) =>
-        current.duration > longest.duration ? current : longest
-    );
+    //Get Satisfation score of longest high piority issue to close:
+
+    let longestIssue = { duration: 0, satisfactionScore: "N/A" };
+
+    data.results.map(issue => {
+            const created = new Date(issue.created);
+            const updated = new Date(issue.updated);
+            const duration= updated.getTime() - created.getTime();
+            if (duration > longestIssue.duration) {
+                longestIssue = {
+                    duration,
+                    satisfactionScore: issue.satisfaction_rating?.score,
+                };
+            }
+        });
 
     res.send({
         highPriorityMetrics: {
